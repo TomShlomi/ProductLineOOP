@@ -6,6 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Runs a simulated product line. Records items that are added and their attributes. Most recent
+ * version is from 9/22/2019. Minor collaboration with Dory Mauretour.
+ *
+ * @author TomShlomi
+ */
 public class Main extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {

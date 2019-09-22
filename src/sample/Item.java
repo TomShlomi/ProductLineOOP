@@ -2,6 +2,11 @@ package sample;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Mostly just some getters and setters for sample.fxml.
+ *
+ * @author TomShlomi
+ */
 @SuppressWarnings("WeakerAccess")
 public class Item {
   private final SimpleStringProperty name = new SimpleStringProperty("");
