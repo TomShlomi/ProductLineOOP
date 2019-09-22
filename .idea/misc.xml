@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <pattern value="sample.Item" method="getName" />
+    <pattern value="sample.Item" method="getType" />
+    <pattern value="sample.Item" method="getManufacturer" />
+    <pattern value="sample.Item" method="Item" />
+  </component>
   <component name="ProjectKey">
     <option name="state" value="project://e79810c8-c5c8-43b1-b19c-90c1f4095425" />
   </component>
