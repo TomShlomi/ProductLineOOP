@@ -1,5 +1,5 @@
-# Project Title
-
+# Product Line
+A simulated product line manager.
 
 ## Demonstration
 
@@ -20,7 +20,7 @@
 
 
 ## Author
-
+Tom Shlomi
 
 ## License
 
