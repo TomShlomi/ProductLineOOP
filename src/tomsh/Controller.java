@@ -1,12 +1,11 @@
-package sample;
+package tomsh;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import java.util.Date;
 
 /**
  * Controller for fxml.
@@ -16,6 +15,8 @@ import javafx.scene.control.TextField;
 @SuppressWarnings("WeakerAccess")
 public class Controller {
 
+  ObservableList productline;
+
   @FXML
   // Initializes GUI.
   public void initialize() {
@@ -23,20 +24,30 @@ public class Controller {
     initializeChoiceBox();
   }
 
-  @FXML private TableView<Item> tbv_existing_products;
+  @FXML private TableView<Product> tbv_existing_products;
   @FXML private TextField txt_product_text;
   @FXML private TextField txt_manufacturer_text;
   @FXML private ChoiceBox<String> cbx_item_type;
   @FXML private ComboBox<Integer> cmb_choose_quantity;
+  @FXML private TextArea production_log_text;
+  @FXML private ListView<Product> lvw_choose_product;
+
+  private int productionNumber = 0;
+  private int num = 0;
 
   @FXML
   // Occurs when button clicked.
   protected void productLineButtonAction(ActionEvent event) {
-    // System.out.println("Product Line");
-    ObservableList<Item> data = tbv_existing_products.getItems();
-    data.add(
-        new Item(
-            txt_product_text.getText(), txt_manufacturer_text.getText(), cbx_item_type.getValue()));
+    ObservableList<Product> data = tbv_existing_products.getItems();
+    Widget w =
+        new Widget(
+            txt_product_text.getText(),
+            txt_manufacturer_text.getText(),
+            ItemType.getType(cbx_item_type.getValue()));
+    data.add(w);
+    lvw_choose_product.getItems().add(w);
+    w.setId(num);
+    num++;
   }
 
   @FXML
@@ -53,7 +64,13 @@ public class Controller {
   @FXML
   // Occurs when Record Production button clicked.
   protected void recordProductionButtonAction(ActionEvent event) {
-    System.out.println("Record Production");
+    System.out.println(lvw_choose_product.getSelectionModel().getSelectedIndex());
+    Product w = lvw_choose_product.getItems().get(lvw_choose_product.getSelectionModel().getSelectedIndex());
+    ProductionRecord prodRec =   new ProductionRecord(w, num);
+    prodRec.setProductionNum(productionNumber++);
+    production_log_text.appendText(
+            "\n" + prodRec.toString());
+    productionNumber++;
   }
 
   /**
@@ -65,9 +82,8 @@ public class Controller {
   public void initializeChoiceBox() {
     ObservableList<String> data = cbx_item_type.getItems();
     data.clear();
-    data.add("Phone");
-    data.add("Desktop");
-    data.add("Laptop");
-    data.add("Tablet");
+    for (ItemType it : ItemType.values()) {
+      data.add(it.getName());
+    }
   }
 }

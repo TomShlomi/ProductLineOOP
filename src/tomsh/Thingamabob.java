@@ -1,21 +1,17 @@
-package sample;
+package tomsh;
 
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Mostly just some getters and setters for sample.fxml.
+ * Mostly just some getters and setters for ProductionTabs.fxml. Currently unused.
  *
  * @author TomShlomi
  */
 @SuppressWarnings("WeakerAccess")
-public class Item {
+public class Thingamabob {
   private final SimpleStringProperty name = new SimpleStringProperty("");
   private final SimpleStringProperty manufacturer = new SimpleStringProperty("");
   private final SimpleStringProperty type = new SimpleStringProperty("");
-
-  public Item() {
-    this("", "", "");
-  }
 
   /**
    * Initializes Item.
@@ -24,7 +20,7 @@ public class Item {
    * @param m manufacturer
    * @param t type
    */
-  public Item(String n, String m, String t) {
+  public Thingamabob(String n, String m, String t) {
     setName(n);
     setManufacturer(m);
     setType(t);
