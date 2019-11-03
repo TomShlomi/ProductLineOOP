@@ -1,12 +1,12 @@
 package tomsh;
-
+/*
 import javafx.beans.property.SimpleStringProperty;
 
 /**
- * Mostly just some getters and setters for ProductionTabs.fxml. Currently unused.
- *
- * @author TomShlomi
- */
+  Mostly just some getters and setters for ProductionTabs.fxml. Currently unused.
+
+  @author TomShlomi
+
 @SuppressWarnings("WeakerAccess")
 public class Thingamabob {
   private final SimpleStringProperty name = new SimpleStringProperty("");
@@ -19,7 +19,7 @@ public class Thingamabob {
    * @param n number
    * @param m manufacturer
    * @param t type
-   */
+
   public Thingamabob(String n, String m, String t) {
     setName(n);
     setManufacturer(m);
@@ -50,4 +50,4 @@ public class Thingamabob {
   public void setType(String t) {
     type.set(t);
   }
-}
+}*/

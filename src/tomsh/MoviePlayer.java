@@ -1,16 +1,32 @@
 package tomsh;
 
+/**
+ * Represents a movie player.
+ *
+ * @author TomSh
+ */
 public class MoviePlayer extends Product implements MultimediaControl {
-  private Screen screen;
+  @SuppressWarnings({"FieldCanBeLocal", "unused"})
+  private final Screen screen;
 
-  private MonitorType monitorType;
+  @SuppressWarnings({"FieldCanBeLocal", "unused"})
+  private final MonitorType monitorType;
 
+  /**
+   * Constructor, manually sets all variables except type, which is set to VISUAL.
+   *
+   * @param name the item's name
+   * @param manufacturer its manufacturer
+   * @param screen the Screen object associated with it
+   * @param monitorType the MonitorType associated with it
+   */
   public MoviePlayer(String name, String manufacturer, Screen screen, MonitorType monitorType) {
     super(name, manufacturer, ItemType.VISUAL);
     this.screen = screen;
     this.monitorType = monitorType;
   }
 
+  @Override
   public String toString() {
     return "Name: "
         + getName()

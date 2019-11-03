@@ -1,12 +1,11 @@
 package tomsh;
 
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
 
 /**
  * Runs a simulated product line. Records items that are added and their attributes. Most recent
@@ -25,6 +24,11 @@ public class Main extends Application {
     // display the JOB Data
   } // end method start
 
+  /**
+   * Initial arguments.
+   *
+   * @param args the arguments
+   */
   public static void main(String[] args) {
     testMultimedia();
     launch(args);
@@ -32,14 +36,16 @@ public class Main extends Application {
 
   } // end method main
 
-  public static void testMultimedia() {
+  /** Tests some code when the code runs and prints to console. */
+  @SuppressWarnings("SpellCheckingInspection")
+  private static void testMultimedia() {
     AudioPlayer newAudioProduct =
         new AudioPlayer(
             "DP-X1A", "Onkyo", "DSD/FLAC/ALAC/WAV/AIFF/MQA/Ogg-Vorbis/MP3/AAC", "M3U/PLS/WPL");
     Screen newScreen = new Screen("720x480", 40, 22);
     MoviePlayer newMovieProduct =
         new MoviePlayer("DBPOWER MK101", "OracleProduction", newScreen, MonitorType.LCD);
-    ArrayList<MultimediaControl> productList = new ArrayList<MultimediaControl>();
+    ArrayList<MultimediaControl> productList = new ArrayList<>();
     productList.add(newAudioProduct);
     productList.add(newMovieProduct);
     for (MultimediaControl p : productList) {

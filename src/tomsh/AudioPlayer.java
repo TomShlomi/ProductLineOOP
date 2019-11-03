@@ -1,23 +1,42 @@
 package tomsh;
 
+/**
+ * Represents an object capable of playing sound.
+ *
+ * @author TomShlomi
+ */
 public class AudioPlayer extends Product implements MultimediaControl {
-  String supportedAudioFormats;
-  String supportedPlaylistFormats;
+  private String supportedAudioFormats;
+  private String supportedPlaylistFormats;
 
-  public AudioPlayer(String name, String manufacturer, String sAF, String sPF) {
+  /**
+   * Constructor.
+   *
+   * @param name the item's name
+   * @param manufacturer its manufacturer
+   * @param audioFormats the audio formats it supports
+   * @param playlistFormats the playlist formats it supports
+   */
+  public AudioPlayer(
+      String name, String manufacturer, String audioFormats, String playlistFormats) {
     super(name, manufacturer, ItemType.AUDIO);
-    supportedAudioFormats = sAF;
-    supportedPlaylistFormats = sPF;
+    supportedAudioFormats = audioFormats;
+    supportedPlaylistFormats = playlistFormats;
   }
 
+  /**
+   * Default constructor.
+   *
+   * @param n name
+   * @param m manufacturer
+   * @param t type
+   */
+  @SuppressWarnings("unused")
   public AudioPlayer(String n, String m, ItemType t) {
     super(n, m, t);
   }
 
-  public AudioPlayer(String n, String m, ItemType t, String q) {
-    super(n, m, t);
-  }
-
+  @Override
   public String toString() {
     return "Name: "
         + getName()

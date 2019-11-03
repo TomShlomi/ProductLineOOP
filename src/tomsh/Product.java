@@ -1,5 +1,10 @@
 package tomsh;
 
+/**
+ * Represents a product.
+ *
+ * @author TomSh
+ */
 public abstract class Product implements Item {
   private int id;
   private ItemType type;
@@ -10,6 +15,14 @@ public abstract class Product implements Item {
     return "Name: " + name + "\nManufacturer: " + manufacturer + "\nType: " + type.toString();
   }
 
+  /**
+   * Constructor, manually sets all variables.
+   *
+   * @param n name
+   * @param m manufacturer
+   * @param t type
+   */
+  @SuppressWarnings("WeakerAccess")
   public Product(String n, String m, ItemType t) {
     setName(n);
     setManufacturer(m);
@@ -45,6 +58,7 @@ public abstract class Product implements Item {
     return manufacturer;
   }
 
+  @SuppressWarnings("WeakerAccess")
   public void setType(ItemType type) {
     this.type = type;
   }
@@ -52,18 +66,4 @@ public abstract class Product implements Item {
   public ItemType getType() {
     return type;
   }
-}
-
-class Widget extends Product {
-  public Widget(String n, String m, ItemType t) {
-    super(n, m, t);
-  }
-
-  public void play() {}
-
-  public void stop() {}
-
-  public void next() {}
-
-  public void previous() {}
 }

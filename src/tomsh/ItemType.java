@@ -1,12 +1,14 @@
 package tomsh;
 
+@SuppressWarnings("SpellCheckingInspection")
 public enum ItemType {
+  NULL(""),
   AUDIO("AU"),
   VISUAL("VI"),
   AUDIOMOBILE("AM"),
   VISUALMOBILE("VM");
 
-  private String name;
+  private final String name;
 
   ItemType(String n) {
     name = n;
@@ -16,7 +18,16 @@ public enum ItemType {
     return name;
   }
 
+  /**
+   * Returns the ItemType object corresponding to a given name.
+   *
+   * @param name the inputted name
+   * @return the corresponding object
+   */
   public static ItemType getType(String name) {
+    if (name == null) {
+      return NULL;
+    }
     if (name.equals("AU")) {
       return AUDIO;
     }
@@ -29,6 +40,6 @@ public enum ItemType {
     if (name.equals("VM")) {
       return VISUALMOBILE;
     }
-    return null;
+    return NULL;
   }
 }

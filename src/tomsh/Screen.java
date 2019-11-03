@@ -1,14 +1,26 @@
 package tomsh;
 
+/**
+ * Represents a screen.
+ *
+ * @author TomSh
+ */
 public class Screen implements ScreenSpec {
-  private String resolution;
-  private int refreshrate;
-  private int responsetime;
+  private final String resolution;
+  private final int refreshRate;
+  private final int responseTime;
 
-  public Screen(String resolution, int refreshrate, int responsetime) {
+  /**
+   * Constructor.
+   *
+   * @param resolution the object's resolution
+   * @param refreshRate its refresh rate
+   * @param responseTime its response time
+   */
+  public Screen(String resolution, int refreshRate, int responseTime) {
     this.resolution = resolution;
-    this.refreshrate = refreshrate;
-    this.responsetime = responsetime;
+    this.refreshRate = refreshRate;
+    this.responseTime = responseTime;
   }
 
   @Override
@@ -16,23 +28,26 @@ public class Screen implements ScreenSpec {
     return "Resolution: "
         + resolution
         + "\nRefresh Rate: "
-        + refreshrate
+        + refreshRate
         + "\nResponse Time: "
-        + responsetime;
+        + responseTime;
   }
 
+  @SuppressWarnings("unused")
   @Override
   public String getResolution() {
     return resolution;
   }
 
+  @SuppressWarnings("unused")
   @Override
   public int getRefreshRate() {
-    return refreshrate;
+    return refreshRate;
   }
 
+  @SuppressWarnings("unused")
   @Override
   public int getResponseTime() {
-    return responsetime;
+    return responseTime;
   }
 }

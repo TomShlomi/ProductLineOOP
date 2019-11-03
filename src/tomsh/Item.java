@@ -1,14 +1,20 @@
 package tomsh;
 
+/**
+ * Interface for a broad class of items.
+ *
+ * @author TomSh
+ */
+@SuppressWarnings({"WeakerAccess", "unused"})
 public interface Item {
 
-  public int getId();
+  int getId();
 
-  public void setName(String n);
+  void setName(String n);
 
-  public String getName();
+  String getName();
 
-  public void setManufacturer(String m);
+  void setManufacturer(String m);
 
-  public String getManufacturer();
+  String getManufacturer();
 }

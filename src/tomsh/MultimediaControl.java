@@ -1,11 +1,17 @@
 package tomsh;
 
+/**
+ * Interface for devices capable of playing media.
+ *
+ * @author TomSh
+ */
+@SuppressWarnings("WeakerAccess")
 public interface MultimediaControl {
-  public void play();
+  void play();
 
-  public void stop();
+  void stop();
 
-  public void next();
+  void next();
 
-  public void previous();
+  void previous();
 }
