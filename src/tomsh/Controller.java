@@ -64,12 +64,18 @@ public class Controller {
   @FXML
   // Occurs when Record Production button clicked.
   protected void recordProductionButtonAction(ActionEvent event) {
-    Product w =
-        lvwChooseProduct.getItems().get(lvwChooseProduct.getSelectionModel().getSelectedIndex());
+    Product w;
+    try {
+      w = lvwChooseProduct.getItems().get(lvwChooseProduct.getSelectionModel().getSelectedIndex());
+    } catch (IndexOutOfBoundsException e) {
+      System.out.println("Please choose a product to manufacture.");
+      return;
+    }
     int cmbBoxValue = 0;
     try {
       String temp = cmbChooseQuantity.getValue();
       cmbBoxValue = Integer.parseInt(temp);
+      if (cmbBoxValue < 0) throw new NumberFormatException();
     } catch (NumberFormatException e) {
       System.out.println(
           "Unfortunately, we do not yet have the metaphysical capacity to make "
@@ -80,7 +86,7 @@ public class Controller {
     }
     for (int i = 0; i < cmbBoxValue; i++) {
       ProductionRecord prodRec = new ProductionRecord(w, num);
-      prodRec.setProductionNum(productionNumber++);
+      prodRec.setProductionNum(productionNumber);
       productionLogText.appendText("\n" + prodRec.toString());
       productionNumber++;
     }
