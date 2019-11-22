@@ -29,7 +29,7 @@ public class Controller {
   @FXML private TextField txtProductText;
   @FXML private TextField txtManufacturerText;
   @FXML private ChoiceBox<String> cbxItemType;
-  @FXML private ComboBox<Integer> cmbChooseQuantity;
+  @FXML private ComboBox<String> cmbChooseQuantity;
   @FXML private TextArea productionLogText;
   @FXML private ListView<Product> lvwChooseProduct;
 
@@ -48,15 +48,14 @@ public class Controller {
     data.add(w);
     lvwChooseProduct.getItems().add(w);
     w.setId(num);
-    num++;
   }
 
   @FXML
   // Initializes ComboBox with integers 1-10.
   protected void initializeComboBox() {
-    ObservableList<Integer> data = cmbChooseQuantity.getItems();
+    ObservableList<String> data = cmbChooseQuantity.getItems();
     for (int i = 1; i <= 10; i++) {
-      data.add(i);
+      data.add(i + "");
     }
     cmbChooseQuantity.getSelectionModel().selectFirst();
     cmbChooseQuantity.setEditable(true);
@@ -67,10 +66,24 @@ public class Controller {
   protected void recordProductionButtonAction(ActionEvent event) {
     Product w =
         lvwChooseProduct.getItems().get(lvwChooseProduct.getSelectionModel().getSelectedIndex());
-    ProductionRecord prodRec = new ProductionRecord(w, num);
-    prodRec.setProductionNum(productionNumber++);
-    productionLogText.appendText("\n" + prodRec.toString());
-    productionNumber++;
+    int cmbBoxValue = 0;
+    try {
+      String temp = cmbChooseQuantity.getValue();
+      cmbBoxValue = Integer.parseInt(temp);
+    } catch (NumberFormatException e) {
+      System.out.println(
+          "Unfortunately, we do not yet have the metaphysical capacity to make "
+              + cmbChooseQuantity.getValue()
+              + " "
+              + w.getName()
+              + "s.");
+    }
+    for (int i = 0; i < cmbBoxValue; i++) {
+      ProductionRecord prodRec = new ProductionRecord(w, num);
+      prodRec.setProductionNum(productionNumber++);
+      productionLogText.appendText("\n" + prodRec.toString());
+      productionNumber++;
+    }
   }
 
   /**
