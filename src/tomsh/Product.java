@@ -1,5 +1,7 @@
 package tomsh;
 
+import java.util.Collection;
+
 /**
  * Represents a product.
  *
@@ -29,6 +31,7 @@ public abstract class Product implements Item {
     setType(t);
   }
 
+  @SuppressWarnings("unused")
   public void setId(int id) {
     this.id = id;
   }
@@ -65,5 +68,35 @@ public abstract class Product implements Item {
 
   public ItemType getType() {
     return type;
+  }
+
+  /**
+   * Prints all of the products in a collection that have the same class as prod.
+   *
+   * @param collection A collection of products
+   * @param prod A product. No properties of it are used except its class
+   */
+  @SuppressWarnings("unused")
+  public static void printType(Collection<Product> collection, Product prod) {
+    for (Product p : collection) {
+      if (prod.getClass() == p.getClass()) {
+        System.out.println(p + "\n");
+      }
+    }
+  }
+
+  /**
+   * Prints all of the products in a collection with a certain type.
+   *
+   * @param collection A collection of products
+   * @param type The type that will be selected
+   */
+  @SuppressWarnings("unused")
+  public static void printType(Collection<Product> collection, ItemType type) {
+    for (Product p : collection) {
+      if (p.getType() == type) {
+        System.out.println(p + "\n");
+      }
+    }
   }
 }

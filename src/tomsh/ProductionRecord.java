@@ -13,6 +13,8 @@ public class ProductionRecord {
   private int productID;
   private String serialNumber;
   private Date dateProduced;
+  private Product prod;
+  private Employee employee;
 
   /**
    * Constructor, initializes all values.
@@ -49,25 +51,29 @@ public class ProductionRecord {
    * @param prod a Product Object
    * @param num the number of those objects create
    */
-  public ProductionRecord(Product prod, int num) {
+  public ProductionRecord(Product prod, Employee e, int num) {
     String strNum = "" + num;
     strNum = "00000".substring(strNum.length()) + strNum;
     serialNumber =
-        (prod.getManufacturer() + "   ").substring(0, 3) + prod.getType().getName() + strNum;
+        (prod.getManufacturer() + "   ").substring(0, 3).trim() + prod.getType().getName() + strNum;
     dateProduced = new Date();
     productID = prod.getId();
+    this.prod = prod;
+    employee = e;
   }
 
   @Override
   public String toString() {
     return "Prod. Num: "
         + productionNumber
-        + " Product ID: "
-        + productID
+        + " Product Name: "
+        + prod.getName()
         + " Serial Num: "
         + serialNumber
         + " Date: "
-        + dateProduced;
+        + dateProduced
+        + " Employee ID: "
+        + employee.getDeptId();
   }
 
   @SuppressWarnings("unused")

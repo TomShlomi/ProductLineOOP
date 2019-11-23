@@ -2,7 +2,6 @@ package tomsh;
 
 @SuppressWarnings("SpellCheckingInspection")
 public enum ItemType {
-  NULL(""),
   AUDIO("AU"),
   VISUAL("VI"),
   AUDIOMOBILE("AM"),
@@ -26,7 +25,7 @@ public enum ItemType {
    */
   public static ItemType getType(String name) {
     if (name == null) {
-      return NULL;
+      return null;
     }
     if (name.equals("AU")) {
       return AUDIO;
@@ -40,6 +39,6 @@ public enum ItemType {
     if (name.equals("VM")) {
       return VISUALMOBILE;
     }
-    return NULL;
+    return null;
   }
 }

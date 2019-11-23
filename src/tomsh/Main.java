@@ -30,14 +30,13 @@ public class Main extends Application {
    * @param args the arguments
    */
   public static void main(String[] args) {
-    testMultimedia();
     launch(args);
     // test constructor used when creating production records from user interface
 
   } // end method main
 
   /** Tests some code when the code runs and prints to console. */
-  @SuppressWarnings("SpellCheckingInspection")
+  @SuppressWarnings({"SpellCheckingInspection", "unused"})
   private static void testMultimedia() {
     AudioPlayer newAudioProduct =
         new AudioPlayer(
