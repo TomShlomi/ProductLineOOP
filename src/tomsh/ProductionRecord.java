@@ -114,4 +114,12 @@ public class ProductionRecord {
   public void setProdDate(Date dateProduced) {
     this.dateProduced = new Date(dateProduced.getTime());
   }
+
+  public String getProdName() {
+    return prod.getName();
+  }
+
+  public ItemType getType() {
+    return prod.getType();
+  }
 }

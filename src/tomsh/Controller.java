@@ -29,6 +29,7 @@ public class Controller {
     initializeComboBox();
     initializeChoiceBox();
     employees = new ArrayList<>();
+    productionRecords = new ArrayList<>();
   }
 
   @FXML private TableView<Product> tbvExistingProducts;
@@ -48,10 +49,11 @@ public class Controller {
   private int employeeNum = 0;
   private ArrayList<Employee> employees;
   private Employee currentEmployee;
+  private ArrayList<ProductionRecord> productionRecords;
 
   @FXML
   // Occurs when button clicked.
-  protected void productLineButtonAction(ActionEvent event) {
+  protected void productLineButtonAction() {
     ObservableList<Product> data = tbvExistingProducts.getItems();
     String name = txtProductText.getText();
     String manufacturer = txtManufacturerText.getText();
@@ -112,6 +114,7 @@ public class Controller {
     }
     for (int i = 0; i < cmbBoxValue; i++) {
       ProductionRecord prodRec = new ProductionRecord(w, currentEmployee, productionNumber);
+      productionRecords.add(prodRec);
       prodRec.setProductionNum(productionNumber++);
       productionLogText.appendText("\n" + prodRec.toString());
     }
@@ -182,5 +185,47 @@ public class Controller {
   public void logout() {
     currentEmployee = null;
     lblEmployee.setText("None");
+  }
+
+  @FXML
+  public void btnGetStats() {
+    String out = "There have been " + productionRecords.size() + " products produced, including: ";
+    try {
+      int num = 0;
+      Product w;
+      w = lvwChooseProduct.getItems().get(lvwChooseProduct.getSelectionModel().getSelectedIndex());
+      for (ProductionRecord pr : productionRecords) {
+        if (pr.getProdName().equals(w.getName())) {
+          num++;
+        }
+      }
+      out += num + w.getName() + "s, ";
+    } catch (IndexOutOfBoundsException e) {
+    }
+    int aus = 0;
+    int ams = 0;
+    int vis = 0;
+    int vms = 0;
+    for (ProductionRecord pr : productionRecords) {
+      if (pr.getType() == ItemType.AUDIO) {
+        aus++;
+      } else if (pr.getType() == ItemType.VISUAL) {
+        vis++;
+      } else if (pr.getType() == ItemType.AUDIOMOBILE) {
+        ams++;
+      } else if (pr.getType() == ItemType.VISUALMOBILE) {
+        vms++;
+      }
+    }
+    out +=
+        aus
+            + " audio devices, "
+            + vis
+            + " visual devices, "
+            + ams
+            + " audiomobile devices, and "
+            + vms
+            + " videomobile devices.";
+    System.out.println(out);
   }
 }
