@@ -13,7 +13,7 @@ http://b.io/Prhttps://tomshlomi.githuoductLineOOP/
 
 ## Diagrams
 
-![](Package sample.png)
+![](Package tomsh.png)
 
 ## Getting Started
 
