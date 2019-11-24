@@ -188,7 +188,7 @@ public class Controller {
   }
 
   @FXML
-  public void btnGetStats() {
+  public void getStats() {
     String out = "There have been " + productionRecords.size() + " products produced, including: ";
     try {
       int num = 0;
@@ -199,8 +199,8 @@ public class Controller {
           num++;
         }
       }
-      out += num + w.getName() + "s, ";
-    } catch (IndexOutOfBoundsException e) {
+      out += num + " " + w.getName() + "s, ";
+    } catch (IndexOutOfBoundsException ignored) {
     }
     int aus = 0;
     int ams = 0;
