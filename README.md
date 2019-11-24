@@ -7,9 +7,11 @@ A simulated product line manager.
 
 ## Documentation
 
+![](docs/index.html)
 
 ## Diagrams
 
+![](Package sample.pdf)
 
 ## Getting Started
 
