@@ -3,6 +3,7 @@ A simulated product line manager.
 
 ## Demonstration
 
+![](20191124_004028.gif)
 
 ## Documentation
 
