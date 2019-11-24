@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 
 /**
  * Runs a simulated product line. Records items that are added and their attributes. Most recent
- * version is from 9/22/2019. Minor collaboration with Dory Mauretour.
+ * version is from 11/23/2019. Minor collaboration with Dory Mauretour.
  *
  * @author TomShlomi
  */
