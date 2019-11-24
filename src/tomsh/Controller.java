@@ -187,9 +187,10 @@ public class Controller {
     lblEmployee.setText("None");
   }
 
+  /** Prints the number of products produced, broken down by type and specific object. */
   @FXML
   public void getStats() {
-    String out = "There have been " + productionRecords.size() + " products produced, including: ";
+    String out = "There have been " + productionRecords.size() + " products produced, including:";
     try {
       int num = 0;
       Product w;
@@ -199,8 +200,9 @@ public class Controller {
           num++;
         }
       }
-      out += num + " " + w.getName() + "s, ";
+      out += " " + num + " " + w.getName() + "s, ";
     } catch (IndexOutOfBoundsException ignored) {
+      out += " ";
     }
     int aus = 0;
     int ams = 0;
