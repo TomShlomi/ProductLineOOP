@@ -1,5 +1,7 @@
 package tomsh;
 
+import java.util.Date;
+
 /**
  * Represents a movie player.
  *
@@ -26,16 +28,32 @@ public class MoviePlayer extends Product implements MultimediaControl {
     this.monitorType = monitorType;
   }
 
+  /**
+   * Generates a movie player based upon its name, screen, and monitor type.
+   *
+   * @param name the name of the MoviePlayer
+   * @param screen the MoviePlayer's Screen
+   * @param monitorType the type of monitor it uses
+   */
+  public MoviePlayer(String name, Screen screen, MonitorType monitorType) {
+    super(name, "OracleProduction", ItemType.VISUAL);
+    this.screen = screen;
+    this.monitorType = monitorType;
+  }
+
   @Override
   public String toString() {
-    return "Name: "
-        + getName()
-        + "\nManufacturer: "
+    return "Manufacturer: "
         + getManufacturer()
+        + "\nDate : "
+        + new Date()
+        + "\nName: "
+        + getName()
         + "\nType: "
         + getType().toString()
-        + "\nScreen:\nResolution: 720x480\n"
-        + "Refresh rate: 40\n"
+        + "\nScreen: Resolution: "
+        + screen.getResolution()
+        + "\nRefresh rate: 40\n"
         + "Response time: 22\n"
         + "Monitor Type: "
         + getType();

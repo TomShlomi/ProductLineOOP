@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -30,6 +31,7 @@ public class Controller {
     initializeChoiceBox();
     employees = new ArrayList<>();
     productionRecords = new ArrayList<>();
+    productionNumbers = new ArrayList<>();
   }
 
   @FXML private TableView<Product> tbvExistingProducts;
@@ -50,6 +52,7 @@ public class Controller {
   private ArrayList<Employee> employees;
   private Employee currentEmployee;
   private ArrayList<ProductionRecord> productionRecords;
+  private ArrayList<Integer> productionNumbers;
 
   @FXML
   // Occurs when button clicked.
@@ -59,7 +62,7 @@ public class Controller {
     String manufacturer = txtManufacturerText.getText();
     ItemType type = ItemType.getType(cbxItemType.getValue());
     if (type == null) {
-      System.out.println("Please choose an item type.");
+      showAlert(Alert.AlertType.ERROR, "Error", "Please choose an item type.");
       return;
     }
     Widget w = new Widget(name, manufacturer, type);
@@ -69,6 +72,7 @@ public class Controller {
     List<Product> listViewProducts = lvwChooseProduct.getItems();
     listViewProducts.add(w);
     listViewProducts.sort(cp);
+    productionNumbers.add(0);
   }
 
   @FXML
@@ -86,14 +90,15 @@ public class Controller {
   // Occurs when Record Production button clicked.
   protected void recordProductionButtonAction(ActionEvent event) {
     if (currentEmployee == null) {
-      System.out.println("Please log in before commencing production");
+      showAlert(Alert.AlertType.ERROR, "Error", "Please log in before commencing production.");
       return;
     }
     Product w;
+    int prodIndex = lvwChooseProduct.getSelectionModel().getSelectedIndex();
     try {
-      w = lvwChooseProduct.getItems().get(lvwChooseProduct.getSelectionModel().getSelectedIndex());
+      w = lvwChooseProduct.getItems().get(prodIndex);
     } catch (IndexOutOfBoundsException e) {
-      System.out.println("Please choose a product to manufacture.");
+      showAlert(Alert.AlertType.ERROR, "Error", "Please choose a product to manufacture.");
       return;
     }
     int cmbBoxValue;
@@ -104,7 +109,9 @@ public class Controller {
         throw new NumberFormatException();
       }
     } catch (NumberFormatException e) {
-      System.out.println(
+      showAlert(
+          Alert.AlertType.ERROR,
+          "Error",
           "Unfortunately, we do not yet have the metaphysical capacity to make "
               + cmbChooseQuantity.getValue()
               + " "
@@ -113,9 +120,11 @@ public class Controller {
       return;
     }
     for (int i = 0; i < cmbBoxValue; i++) {
-      ProductionRecord prodRec = new ProductionRecord(w, currentEmployee, productionNumber);
+      int num = productionNumbers.get(prodIndex);
+      ProductionRecord prodRec = new ProductionRecord(w, currentEmployee, num);
       productionRecords.add(prodRec);
       prodRec.setProductionNum(productionNumber++);
+      productionNumbers.set(prodIndex, num + 1);
       productionLogText.appendText("\n" + prodRec.toString());
     }
   }
@@ -144,7 +153,9 @@ public class Controller {
       e = new Employee(name, pw, employeeNum);
       employeeNum++;
     } catch (IllegalArgumentException iae) {
-      System.out.println(
+      showAlert(
+          Alert.AlertType.ERROR,
+          "Error",
           "Please type a proper password, including an uppercase letter,"
               + " a lowercase letter, and a special character.");
       return;
@@ -152,7 +163,8 @@ public class Controller {
     currentEmployee = e;
     employees.add(e);
     lblEmployee.setText(name);
-    System.out.println("Your username is " + e.getUsername());
+    showAlert(
+        Alert.AlertType.INFORMATION, "Account Created", "Your username is " + e.getUsername());
     txtNewName.clear();
     txtNewPassword.clear();
   }
@@ -168,17 +180,26 @@ public class Controller {
             lblEmployee.setText(e.getName());
             txtLoginUsername.clear();
           } else {
-            System.out.println("Incorrect password. Please try again in 10 seconds.");
+            showAlert(
+                Alert.AlertType.ERROR,
+                "Error",
+                "Incorrect password. Please try again in 10 seconds.");
           }
         } catch (DateTimeException dte) {
-          System.out.println("Please wait at least 10 seconds between password attempts.");
+          showAlert(
+              Alert.AlertType.ERROR,
+              "Error",
+              "Please wait at least 10 seconds between password attempts.");
         }
         txtLoginPassword.clear();
         return;
       }
     }
     txtLoginPassword.clear();
-    System.out.println("There is no employee with that username. Please create an account.");
+    showAlert(
+        Alert.AlertType.ERROR,
+        "Error",
+        "There is no employee with that username. Please create an account.");
   }
 
   @FXML
@@ -228,6 +249,15 @@ public class Controller {
             + " audiomobile devices, and "
             + vms
             + " videomobile devices.";
-    System.out.println(out);
+    showAlert(Alert.AlertType.INFORMATION, "Production Statistics", out);
+  }
+
+  private void showAlert(Alert.AlertType type, String title, String content) {
+    Alert alert = new Alert(type);
+    alert.setTitle(title);
+    alert.setHeaderText(null);
+    alert.setContentText(content);
+
+    alert.showAndWait();
   }
 }

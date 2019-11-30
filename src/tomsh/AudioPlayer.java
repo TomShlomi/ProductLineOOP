@@ -1,5 +1,7 @@
 package tomsh;
 
+import java.util.Date;
+
 /**
  * Represents an object capable of playing sound.
  *
@@ -29,26 +31,27 @@ public class AudioPlayer extends Product implements MultimediaControl {
    *
    * @param n name
    * @param m manufacturer
-   * @param t type
    */
   @SuppressWarnings("unused")
-  public AudioPlayer(String n, String m, ItemType t) {
-    super(n, m, t);
+  public AudioPlayer(String n, String m) {
+    super(n, "OracleProduction", ItemType.AUDIO);
+    supportedAudioFormats = m;
   }
 
   @Override
   public String toString() {
-    return "Name: "
-        + getName()
-        + "\nManufacturer: "
+    return "Manufacturer: "
         + getManufacturer()
-        + "\nType: "
-        + getType().toString()
-        + "\nSupported Audio Formats: "
+        + "\nDate : "
+        + new Date()
+        + "\nName: "
+        + getName()
+        + "\nAudio Spec : "
         + supportedAudioFormats
-        + "\nSupported Playlist Formats: "
+        + "\nPlaylist Spec : "
         + supportedPlaylistFormats
-        + getType();
+        + "\nType: "
+        + getType().toString();
   }
 
   @Override
