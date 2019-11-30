@@ -9,7 +9,7 @@ This was built by me, with substantial guidance and assitance from my professor 
 
 ## Documentation
 
-http://b.io/Prhttps://tomshlomi.githuoductLineOOP/
+https://tomshlomi.github.io/ProductLineOOP/
 
 ## Diagrams
 
